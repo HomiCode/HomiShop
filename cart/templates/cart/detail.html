@@ -13,6 +13,7 @@ Your shopping cart
 <th>Quantity</th>
 <th>Remove</th>
 <th>Unit price</th>
+<th>    </th>
 <th>Price</th>
 </tr>
 </thead>
@@ -23,7 +24,7 @@ Your shopping cart
 <td>
 <a href="{{ product.get_absolute_url }}">
 <img src="{% if product.image %}{{ product.image.url }}
-{% else %}{% static 'img/no_image.png' %}{% endif %}">
+{% else %}{% static 'img/no_image.png' %}{% endif %}" style="max-width: 540px;">
 </a>
 </td>
 <td>{{ product.name }}</td>
@@ -31,22 +32,25 @@ Your shopping cart
     <form action="{% url 'cart:cart_add' product.id %}" method="post">
         {{ item.update_quantity_form.quantity }}
         {{ item.update_quantity_form.override }}
-        <input type="submit" value="Update">
+        <input type="submit" value="Update" class="btn btn-success">
         {% csrf_token %}
     </form>
 </td>
 <td>
 <form action="{% url 'cart:cart_remove' product.id %}"
 method="post">
-<input type="submit" value="Remove">
+<input type="submit" value="Remove" class="btn btn-danger">
 {% csrf_token %}
 </form>
 </td>
+<td>    </td>
 <td class="num">${{ item.price }}</td>
+<td>    </td>
 <td class="num">${{ item.total_price }}</td>
 </tr>
 {% endwith %}
 {% endfor %}
+
 <tr class="total">
 <td>Total</td>
 <td colspan="4"></td>
@@ -55,8 +59,8 @@ method="post">
 </tbody>
 </table>
 <p class="text-right">
-<a href="{% url 'shop:product_list' %}" class="buttonlight">Continue shopping</a>
-<a href="{% url 'orders:order_create' %}" class="button">
+<a href="{% url 'shop:product_list' %}" class="buttonlight btn btn-info">Continue shopping</a>
+<a href="{% url 'orders:order_create' %}" class="button btn btn-warning">
     Checkout
     </a>
 </p>
