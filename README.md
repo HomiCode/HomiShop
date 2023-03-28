@@ -1,4 +1,4 @@
-# 🛍️ HomiShop
+# 🛍️ HomiShop [CODING...]
 
 ## _Online Shop WebApp_
 
